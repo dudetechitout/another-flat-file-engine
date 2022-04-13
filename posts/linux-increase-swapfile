@@ -34,7 +34,7 @@ That's it! The computer now has an active swap file.
 
 [b]Protip[/b]: It is always a good idea to have a swap file available on either a personal computer or server running Linux. Reason being that if the personal computer goes into hibernation – even by accident - the computer won’t struggle to load from disk to RAM and you’ll be up and running in no time. With a server, especially a server running a database such as MariaDB or MySQL, the server can run out of memory and shut these programs down; resulting in service interruption. 
 
-title$Linux Increase Swapfile 
-date$February 3, 2022
-summary$
-image$img/swap.jpeg 
+|title$Linux Increase Swapfile 
+|date$February 3, 2022
+|summary$
+|image$img/swap.jpeg 

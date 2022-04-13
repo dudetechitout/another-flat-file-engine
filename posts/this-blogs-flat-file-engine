@@ -1,0 +1,28 @@
+[h3]Introduction[/h3]
+
+One thing of running anything WordPress is updates and security. Constantly security flaws are being found in WordPress plugins – even WordPress itself. Which is a given, since WordPress is relatively popular and finding a security flaw can land one access to a trove of websites. Given this, it’s no wonder updates are a venture and requires weekly attention. While these things sound troubling, they’re not, they’re just time consuming. Sometimes, even updating the wrong plugin can result in a broken website needing to be restored from a backup or using that sweet WP CLI command to rollback a plugin update.
+
+Obviously, there are tactics to offset much of this, but I personally wasn’t wanting to have another website to maintain – mine.  I was wanting something that was sleek, modern, easy to use, fast to load, had a small footprint, mobile friendly, secure and most important – easy to maintain – which led me to build out the custom coded ‘CMS system’, ‘content publishing system’ or even as some call it a ‘flat file blog engine’ that this website uses that’s coded in PHP using BBCode for markup.
+
+There are a lot of alternatives in various languages. For example, there is Jekyll that’s in Ruby and Grav that uses PHP too, but I just wasn’t too happy with what was out there. I wasn’t needing something that had a user interface – let me load up SFTP, make a new file as my post and type away being the motto behind the creation of this flat file blog engine.
+
+Going this route also allowed me to not worry about setting up a database either – it really solved a lot of problems for me, and I hope it does you too as I’m making this open source and, in this post, I’ll show you a little about it!
+
+[h3]What is a flat file blog engine?[/h3]
+
+Now what exactly is a ‘flat file’ anything? Simply it’s a type of ‘anything’ that relies on just files – no databases – just files. It makes it easy to maintain and migrate. In-fact the engine this blog uses is only 340 KB in size (excluding images)! That’s crazy to think about, as an average WordPress size is 30 MB!!! When you factor in plugins, themes and the like you can easily reach 50 MB plus for a WordPress installation – not even counting the database. With that size, it can quickly become difficult to maintain and manage. Even at that size, it can become difficult to even deliver the content to which a CDN such as CloudFlare comes into play and depending on the services reliant on WordPress; not even CloudFlare can save the day. Though, we’re simply talking about a blog, but still it can become a chore to maintain.
+
+[h3]Now how is a ‘flat file’ system even possible?[/h3]
+
+The system that this blog uses – coded by yours truly – uses purely PHP to do its business. Which may sound interesting, as the URL you’re viewing this page on ends in ‘.html’. Well, to keep bots from reading the filetype as PHP to discourage brute forcing exploits, coupled with a cleaner and more elegant look, there is a .htaccess file that applies the ‘.html’ to every post or page. It does this by using ‘index.php’ to find a post or page.
+
+That's great right, but again: How is it possible? The possibly lies really in the 'index.php' file and the 'header.php' file in the 'assets/inc' folder. Reason being is that the 'header.php' file takes the post or page in that is being requested, filters through it and forwards this to the 'index.php' file to be displayed. For example, visiting this post told 'header.php' to find the file matching the URL in 'posts' folder and to read this post's file to gather the title, data, summary and featured image to have that information forwarded to 'index.php' to display.
+
+[h3]Learn More[/h3]
+
+Want to know more? Check it out on my Github: [url=https://github.com/dudetechitout/another-flat-file-engine/]https://github.com/dudetechitout/another-flat-file-engine/[/url]
+
+|title$This Blog's Flat File Engine
+|date$April 13, 2022
+|summary$
+|image$img/banner-laptop.jpg

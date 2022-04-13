@@ -24,8 +24,8 @@ Active Directory Rights Management Services or AD RMS is a server role in Window
 
 These features allow for the generation, management, and sharing of security certificates. The certificates encrypt data sent over the Internet and guarantee their privacy and confidentiality, thereby averting attempts by hackers to steal the information.
 
-title$Active Directory Domain Services Overview
-date$January 2, 2020
-summary$
-image$img/active-directory-banner.png
-ft$y
+|title$Active Directory Domain Services Overview
+|date$January 2, 2020
+|summary$
+|image$img/active-directory-banner.png
+|ft$y

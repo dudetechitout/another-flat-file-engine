@@ -29,7 +29,7 @@ Save the file and go back and change the [b]AutoRun[/b] value to [b]C:\Users\you
 
 That’s it! It’ll now function in CMD as well as programs like Tabby.
 
-title$How to Install Neofetch on Windows
-date$March 3, 2022
-summary$
-image$img/neofetch_windows.png 
+|title$How to Install Neofetch on Windows
+|date$March 3, 2022
+|summary$
+|image$img/neofetch_windows.png 
