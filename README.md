@@ -44,3 +44,11 @@ BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be 
 * Image: `[img]The image to show[/img]`
 * List: `[list=1][*]This will be numbered[/list]` and `[list]Will not be numbered[/list]`
 * Video: `[youtube]https://www.youtube.com/watch?v=O91DT1pR1ew[/youtube]`
+
+## Can I make a new page?
+
+You can! Just name it what you'd like it to be called. For example, if you want to make `about` you would just make a new file called `about` in the `pages` folder. It'll make that new page that'll show up in the top header of the page. The content you'd just type up using BBCode - look to the included `projects` file in the `pages` folder as an example.
+
+## That's it!
+
+That's all there is to it. There are some things that can be improved on, but it gets the job done for what it is. Hopefully you put it to some good use!
