@@ -31,4 +31,8 @@ Content is going to be in [BBCode markup](https://www.phpbb.com/community/help/b
 
 BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be `[b]`. Here are the available BBCode for this engine:
 
-* sd
+* [strong]
+* [h1] through [h6]
+* [em]
+* [i]
+* [quote]
