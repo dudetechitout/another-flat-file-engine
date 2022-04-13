@@ -6,10 +6,23 @@ A repository dedicated to a flat file engine I'd made to serve my blog.
 
 This is a repository hosting a flat file engine for blogging. You just need a host that allows PHP to be ran, upload this git and you're ready to go!
 
-## How to update 'me'
+## How to update 'me'?
 
-You edit the 'you' file to include the blog title (line 1), a quick summary of you (line 2) and your profile picture (line 3).
+You edit the 'you' file to include the blog title (line 1), a quick summary of you (line 2) and your profile picture location (line 3).
 
     Dude Tech it Out
     Hey, my name is James! This is just a simple place to jot down some thoughts n post some stuffs.
     /img/me.jpg
+
+## How to write a post?
+
+Simply go into the 'posts' folder and make a new file without an extension - e.g. My First Blog Post would be my-first-blog-post - with the following content:
+
+    Hello world! This is my first post!
+
+    |title$My First Blog Post
+    |date$April 13, 2022
+    |summary$Come view my first ever blog post! Keep in mind, I can always leave this blank, but it isn't recommended on short blog posts.
+    |image$img/banner-laptop.jpg
+
+Content is going to be in [BBCode markup](https://www.phpbb.com/community/help/bbcode). You can read more on the available BBcode below.
