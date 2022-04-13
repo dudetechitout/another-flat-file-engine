@@ -31,8 +31,16 @@ Content is going to be in [BBCode markup](https://www.phpbb.com/community/help/b
 
 BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be `[b]`. Here are the available BBCode for this engine:
 
-* [strong]
-* [h1] through [h6]
-* [em]
-* [i]
-* [quote]
+* Font strong: [strong]
+* Headers: [h1] through [h6]
+* Emphasized text: [em]
+* Make text italic: [i]
+* Do a quote: [quote]
+* Font size: [size]
+* Slash text: [s]
+* Center Text: [center]
+* List e-mail: [email=james@selfo.io][/email] or [email]james@selfo.io[/email]
+* Make URL: [url=https://dudetechitout.com]My Blog[/url]
+* Image: [img]The image to show[/img]
+* List: [list=1][*]This will be numbered[/list] and [list]Will not be numbered[/list]
+* Video: [youtube]https://www.youtube.com/watch?v=O91DT1pR1ew[/youtube]
