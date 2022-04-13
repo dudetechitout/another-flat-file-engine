@@ -10,6 +10,6 @@ This is a repository hosting a flat file engine for blogging. You just need a ho
 
 You edit the 'you' file to include the blog title (line 1), a quick summary of you (line 2) and your profile picture (line 3).
 
-`Dude Tech it Out
+```Dude Tech it Out
 Hey, my name is James! This is just a simple place to jot down some thoughts n post some stuffs.
-/img/me.jpg`
+/img/me.jpg```
