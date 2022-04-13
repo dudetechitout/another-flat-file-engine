@@ -1,0 +1,94 @@
+[h3]Introduction[/h3]
+
+What I love about an Asus laptop and Macbook is the backlight is on while typing. Whichever method of choice to make that possible – it didn’t matter – it just happens. This doesn’t happen on a ThinkPad though. Why? Not too sure. Is it that was done intentionally to keep the backlight from burning out? Possible and plausible, but does that really matter? Yes. No one wants to spend the money in replacing the backlight of a keyboard. Should it prevent being able to use the backlight? No of course not. It’s a function of the device. Well, no one wants to manually turn the backlight on all the time or burn out the backlight. To top it off, make it so the ThinkPad backlight isn’t on while an external keyboard is connected.
+Recap of the problems we’re solving:
+
+[list=1] 
+[*]The backlight keyboard comes on when the computer is unlocked and when an external USB device is not plugged in.
+[*]The backlight keyboard goes off when the computer is locked, idle for 1 minute or more and an external device is plugged in.
+[/list]
+
+[h4]Finding A Solution[/h4]
+
+Instead of reinventing the wheel, we need to setoff on an adventure in finding if anything like this exists. Well, it looks like there is! It appears that Jonas Hendrickx has made a post about this very issue of turning the keyboard on at boot - [url=https://www.jonashendrickx.com/2021/03/16/how-to-turn-on-keyboard-backlight-at-boot-for-thinkpads/]How to turn on keyboard backlight at boot for ThinkPads?[/url] - which means we can use this as a baseline for our custom script.
+
+That’s just awesome! Makes life a little bit easier. Following the guide we’ll make sure the proper dependencies are installed: [url=https://support.lenovo.com/uu/es/downloads/ds105970-lenovo-system-interface-foundation-for-windows-10-32-bit-64-bit-thinkpad-thinkcentre-ideapad-ideacentre-thinkstation]Lenovo System Interface Foundation[/url]
+
+Once that is installed, let’s move onto using our custom script from [url=https://github.com/dudetechitout/lenovo-powershell/blob/main/auto-keyboard-backlight/auto-keyboard-backlight.ps1]dudetechitout auto-keyboard-backlight[/url]
+
+Let's save that in the Document's directory under the 'scripts' folder (Win+R > %USERPROFILE%\Documents > Return > CTRL+Shift+N > "scripts") as [b]auto-keyboard-backlight.ps1[/b].
+
+Now let's do a little bit of scheduling that'll cover the use of an external keyboard, boot, sleep and wakeup, hibernation and wakeup, idle, lock and unlock using the Task Scheduler in Windows:
+
+To schedule the boot, unlock and external keyboard with Task Scheduler:
+[list=1]
+[*]Click '[b]Create Task[/b]'.
+[*]Choose '[b]Run whether user is logged in or not[/b]'. (Make use sure user that executes script has permissions to run on this machine.)
+[*]Add a trigger '[b]At startup[/b]'.
+[*]Add a trigger '[b]On workstation unlock[/b]'.
+[*]Add a trigger '[b]On an event[/b]' if you want to support detection of USB keyboard (unfortunately no convenient way of detecting USB removal/insertion - have to use Audio as a tick). Make sure '[b]Microsoft-Windows-Audio/Informational[/b]' is enabled by going to Start > Event Viewer > Applications and Services Logs > Microsoft > Windows > Audio > Informational and Right click '[b]Informational[/b]' and select '[b]Enable Log[/b]' before doing this.
+    [list]
+    [*]Log: 'Microsoft-Windows-Audio/Informational'
+    [*]Source: 'Audio'
+    [*]EventID: '155'
+    [/list]
+[*]Add a trigger '[b]On an event[/b]' if you want to support sleep and hibernation. You'll need to find the EventID in Windows Event Manager.
+	[list]
+    [*]Log: 'System'
+    [*]Source: 'Power-Troubleshooter'
+    [*]EventID: 1
+    [/list]
+[*]Add an action with '[b]Program/script[/b]' location set to '[b]C:\Windows\syswow64\WindowsPowerShell\v1.0\powershell.exe[/b]' and parameters '[b]-File path\to\script\auto-keyboard-backlight.ps1[/b]'
+[/list]
+
+To schedule with Task Scheduler for idle:
+[list=1]
+[*]Click '[b]Create Task[/b]'.
+[*]Choose '[b]Run whether user is logged in or not[/b]'. (Make use sure user that executes script has permissions to run on this machine.)
+[*]Add a trigger '[b]On idle[/b]'.
+[*]Go to the [b]Conditions[/b] tab and select '[b]Start the task only if the computer is idle for:[/b]' to '[b]1 minute[/b]' with '[b]Wait for idle for:[/b]' '[b]Do not wait[/b]', uncheck '[b]Stop if the computer ceases to be idle[/b]'.
+[*]Add an action with '[b]Program/script[/b]' location set to '[b]C:\Windows\syswow64\WindowsPowerShell\v1.0\powershell.exe[/b]' and parameters '[b]-File path\to\script\auto-keyboard-backlight.ps1 true[/b]'
+[/list]
+
+To schedule with Task Scheduler for lock:
+[list=1]
+[*]Click '[b]Create Task[/b]'.
+[*]Choose '[b]Run whether user is logged in or not[/b]'. (Make use sure user that executes script has permissions to run on this machine.)
+[*]Add a trigger '[b]On workstation lock[/b]'.
+[*]Add an action with '[b]Program/script[/b]' location set to '[b]C:\Windows\syswow64\WindowsPowerShell\v1.0\powershell.exe[/b]' and parameters '[b]-File path\to\script\auto-keyboard-backlight.ps1 true[/b]'
+[/list]
+
+[b][u]Be sure that all theses tasks run whether the laptop is on AC or not by unchecking the box 'Start the task only if the computer is on AC power' under 'Conditions'.[/u][/b]
+
+Now that the script has been placed in the correct directory and the tasks are all scheduled, next is to make the script actually work and that is done by signing it.
+
+[h4]Signing Our Solution[/h4]
+
+Open a powershell terminal with administrator privilages, enter the command below and press '[b]y[/b]':
+
+[code]Set-ExecutionPolicy RemoteSigned -Scope CurrentUser[/code]
+
+We now need to make the certificate in an ordinary/non-elevated PowerShell console by entering:
+
+[code]New-SelfSignedCertificate -DnsName dudecodeitout -CertStoreLocation Cert:\CurrentUser\My\ -Type Codesigning[/code]
+
+Now open the Certificate Management Console: certmgr.msc > Personal > Certificates. Select and Copy your dudecodeitout to the clipboard and paste this certificate into Trusted Root Certification Authority (or you can import this certificate to the computer’s Trusted Root CA).
+
+Time to sign the PowerShell script! You can sign the PowerShell script using the command below:
+
+[code]Set-AuthenticodeSignature -FilePath C:\Users\yourusername\Documents\scripts\auto-keyboard-backlight.ps1 -Certificate (Get-ChildItem -Path Cert:\CurrentUser\My\ -CodeSigningCert)[/code]
+
+Opening the script '[b]auto-keyboard-backlight.ps1[/b]' you should now see '[b]# SIG # Begin signature block[/b]' and that means it was a success!
+
+[h3]Why Audio Logs?[/h3]
+
+It was quite difficult in finding a solution in checking whether a USB device had been unplugged or plugged in. Which can be possibly blamed on Event Viewer aging with the development of Windows; not getting enough TLC from Microsoft. Rather than continue wasting time in finding a viable solution for this, it was best to enable the audio logs and use that, as each time a device is unplugged or plugged back in an audio clip is played, which can be attached to, and the script changed to accommodate such a solution. Plus, it opens the doors of enabling various other features.
+
+[h3]Conclusion[/h3]
+
+That's all there is to it! Upon locking, unlocking, boot, ideling and plugging or unplugging an external keyboard the backlight will react appropriately.
+
+title$ThinkPads & The Keyboard Backlight
+date$February 28, 2022
+summary$
+image$img/thinkpad.jpg 

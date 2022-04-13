@@ -1,0 +1,31 @@
+Initially released with Windows 2000 Server on February 17, 2000 and reformed with additional features in February 27, 2008 with the release of Windows Server 2008. Active Directory or AD is a directory service offered by Microsoft that consits of an array of services running on a Windows Server, managing permissions and access to networked resources. Without an Active Directory, sysadmins would be forced to set up local users on each personal computer.
+
+[h3]Directory Services Technologies[/h3]
+
+Active Directory Services consist of multiple directory services. While the best known is Active Directory Domain Services, there’s Lightweight Directory Services, Certificate Services, Federation Services and Rights Management Services.
+
+[h4]Domain Services[/h4]
+
+You may have actually ran into Active Directory Domain Services or AD DS at school or work without reliasing it. As Active Directory Domain Services authenticates and authorizes all users and computers in a Windows domain type network. A simple example being that when a user logs into a computer that is part of a Windows domain, Active Directory Domain Services checks the submitted password and determines whether the user is a system administrator or just a normal user.
+
+[h4]Lightweight Directory Services[/h4]
+
+Active Directory Lightweight Directory Services or AD LDS, formerly known as Active Directory Application Mode (AD AM), is a lightweight, developer-focused, directory that provides flexible support for directory-enabled applications without the dependencies and domain-related restrictions of Active Directory Domain Services (AD DS). While not full as featured as Active Directory Domain Services, it can be useful as a decentralized directory for testers and developers alike.
+
+[h4]Directory Federation Services[/h4]
+
+Active Directory Federation Services or AD FS is a Single Sign-On (SSO) solution used primarily to provide a single set of credentials that can access a variety of sites not necessarily hosted within the same domain. For example, a user logs into their Windows based work PC and needs to obtain pricing or product details from a partner company’s extranet website. The user simply navigates to the partner-company extranet site, for example: https://selfo.io and now doesn’t require any password to be typed in; instead, the user credentials are simply passed to the partner extranet using AD FS.
+
+[h4]Rights Management[/h4]
+
+Active Directory Rights Management Services or AD RMS is a server role in Windows Active Directory that handles information rights. Having its own set of unique tools that not only protect an organization’s intellectual property (that includes email messages, Microsoft Office documents, project information, contacts etc.) through encryption, but manage rights as well.
+
+[h4]Certificate Services[/h4]
+
+These features allow for the generation, management, and sharing of security certificates. The certificates encrypt data sent over the Internet and guarantee their privacy and confidentiality, thereby averting attempts by hackers to steal the information.
+
+title$Active Directory Domain Services Overview
+date$January 2, 2020
+summary$
+image$img/active-directory-banner.png
+ft$y

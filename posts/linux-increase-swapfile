@@ -1,0 +1,40 @@
+Swap in Linux is a space on the disk that is used when the amount of physical RAM memory is full. When a Linux system runs out of RAM, inactive pages are moved from RAM memory to the swap space. Swap space can take either a form of dedicated swap partition or a swap file. 
+
+The golden rule for a personal computer running Linux is to keep the swap size as large as the RAM size. Reason being is when or if the system goes into hibernation, the RAM content is stored in the swap space, so power can be completely cut off. 
+
+A server on the other hand that shouldn't have a reason to go into hibernation can get away with these guidelines: 
+
+[list] 
+[*]Systems with less than 2 GB RAM - 2 times the amount of RAM. 
+[*]Systems with 2 to 8 GB RAM - the same size as the amount of RAM. 
+[*]Systems with more than 8 GB RAM - at least 4 GB of Swap. 
+[/list] 
+
+Now let's jump in on getting that swap file setup! 
+
+[list=1] 
+[*]Disable the swap file and delete it:
+[code]sudo swapoff /swapfile && sudo rm /swapfile[/code]
+[*]Create new swap space of - in my case size 16 GB (16 x 1024 = 16384). bs is the block size. Basically bs x count = bytes to be allocated (in this case 16 GB). Here bs = 1M (M stands for mega, so we are assigning 1MB block size) and we are allocating 16384 x 1MB (=16GB) to swap:
+[code] sudo dd if=/dev/zero of=/swapfile bs=1M count=16384[/code]
+[*]Give it the read/write permission for root:
+[code] sudo chmod 600 /swapfile[/code]
+[*]Format it to swap:
+[code]sudo mkswap /swapfile[/code]
+[*]Turn on swap again:
+[code]sudo swapon /swapfile[/code]
+[*]Make it permanent:
+[code]echo "/swapfile swap swap defaults 0 0" | sudo tee -a /etc/fstab[/code]
+[*]Verify changes:
+[code]sudo swapon --show[/code]
+[*]Now reboot the computer for the above changes to take place!
+[/list]
+
+That's it! The computer now has an active swap file.
+
+[b]Protip[/b]: It is always a good idea to have a swap file available on either a personal computer or server running Linux. Reason being that if the personal computer goes into hibernation – even by accident - the computer won’t struggle to load from disk to RAM and you’ll be up and running in no time. With a server, especially a server running a database such as MariaDB or MySQL, the server can run out of memory and shut these programs down; resulting in service interruption. 
+
+title$Linux Increase Swapfile 
+date$February 3, 2022
+summary$
+image$img/swap.jpeg 

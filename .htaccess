@@ -1,0 +1,25 @@
+DirectoryIndex home.php first.html index.htm index.html index.php
+
+Options +MultiViews
+RewriteEngine On
+
+Options -Indexes
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteRule ^posts/img/(.*)$ img/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteRule ^posts\/(.*).html$ index.php?post=$1 [NC,L]
+RewriteRule ^pages\/(.*).html$ index.php?page=$1 [NC,L]
+
+RewriteRule ^sitemap.txt$ sitemap.php [NC,L]
+RewriteRule ^sitemap.xml$ sitemap_xml.php [NC,L]
+
+RewriteCond %{THE_REQUEST} \.php[/\s?] [NC]
+RewriteRule !^error - [R=404,L]

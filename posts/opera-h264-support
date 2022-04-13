@@ -1,0 +1,35 @@
+You maybe experiencing issues with YouTube while using Opera on Linux. Might be getting an error that says "Your browser does not currently recognize any of the video formats available.", much like the image below.
+
+[img]wss1k.png[/img]
+
+Unfortunately it has a lot to do with licensing to where Opera isn't pre-installed with proper codecs. For example, some formats like h264 are not royalty free and Opera does not have the licence to use them. Which isn’t a complete deal-breaker as there is a quick fix solution. 
+
+You'll first want to exit Opera. Next you'll want to open a terminal window and enter this in:
+
+[code]cd ~/ && rm -rf opera-ffmpeg-codecs-* && sudo apt-get install chromium-codecs-ffmpeg-extra && wget http://ftp5.gwdg.de/pub/linux/archlinux/community/os/x86_64//opera-ffmpeg-codecs-75.0.3770.142-1-x86_64.pkg.tar.xz && tar -xJf opera-ffmpeg-codecs-* && sudo mkdir -p /usr/lib/x86_64-linux-gnu/opera/lib_extra/ && sudo cp /usr/lib/opera/lib_extra/libffmpeg.so /usr/lib/x86_64-linux-gnu/opera/lib_extra/ && sudo cp /usr/lib/opera/lib_extra/libffmpeg.so /usr/lib/x86_64-linux-gnu/opera/ && rm -rf opera-ffmpeg-codecs-*.+[/code]
+
+Here is a list as to what these commands are doing:
+
+[list=1]
+[*]change to home dir
+[*]remove opera ffmpeg package
+[*]install chromium codecs support
+[*]download opera ffmpeg package
+[*]extract package
+[*]make dir if not already
+[*]copy libffmpeg into dir
+[*]copy libffmpeg into dir ../
+[*]remove opera ffmpeg package
+[/list]
+
+That'll fix it up right quick. Now test it by opening Opera and going to [url=http://html5test.com]http://html5test.com[/url], look for "H.264 support" to say "Yes".
+
+[img]hxtoJ4E.png[/img]
+
+Hope you enjoy this quick fix!
+
+title$Opera 62.0.3331.116 H.264 Support
+date$Auguest 28, 2019
+summary$
+image$img/opera_browser_primary-100649478-large.jpg
+ft$y

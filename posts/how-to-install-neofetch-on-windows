@@ -1,0 +1,35 @@
+Getting Neofetch installed on Windows is easier than you might think. You simply need a PowerShell terminal and follow these steps:
+[list=1] 
+[*]Enter this command into the PowerShell terminal that’ll give permission to run the next steps: 
+[code]Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser[/code]
+[*]Run this command next to install Scoop:
+[code]iwr -useb get.scoop.sh | iex[/code]
+[*]Now that scoop is installed, it’s time to install neofetch:
+[code]scoop install neofetch[/code]
+[*]The last step to install neofetch is to install git:
+[code]scoop install git[/code]
+[/list] 
+What’s awesome about Linux, is that with neofetch installed, combined with a quick bashsrc edit neofetch can start automatically with the terminal. Let’s make that possible with Windows by making a regedit change:
+[list=1] 
+[*]You’ll want to run regedit by [b]Win+R[/b] and typing [b]regedit[/b].
+[*]Navigate to:
+[code]HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor[/code]
+[*]Right click and select [b]New > String Value[/b] with the name as [b]AutoRun[/b] with a value of [b]neofetch[/b]
+[*]Once saved, just open command prompt as usual to see neofetch automatically run!
+[/list] 
+Unfortunately, neofetch won’t run in programs like Tabby automatically. A more robust solution is to create a CMD file that has all the things you’d like to autorun on a new command prompt session:
+[list=1] 
+[*]Create a new file under home directory named [b]autorun.cmd[/b]
+[*]Fill [b]autorun.cmd[/b] with:
+[code]
+@echo off && C:\Users\%username%\scoop\apps\git\current\bin\bash.exe C:\Users\%username%\scoop\apps\neofetch\current\neofetch
+[/code]
+Save the file and go back and change the [b]AutoRun[/b] value to [b]C:\Users\yourusername\autorun.cmd[/b].
+[/list] 
+
+That’s it! It’ll now function in CMD as well as programs like Tabby.
+
+title$How to Install Neofetch on Windows
+date$March 3, 2022
+summary$
+image$img/neofetch_windows.png 
