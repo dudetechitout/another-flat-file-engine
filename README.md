@@ -26,3 +26,9 @@ Simply go into the 'posts' folder and make a new file without an extension - e.g
     |image$img/banner-laptop.jpg
 
 Content is going to be in [BBCode markup](https://www.phpbb.com/community/help/bbcode). You can read more on the available BBcode below.
+
+## BBCode? What's that?
+
+BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be `[b]`. Here are the available BBCode for this engine:
+
+* sd
