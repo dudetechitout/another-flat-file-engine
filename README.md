@@ -39,7 +39,7 @@ BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be 
 * Font size: `[size]`
 * Slash text: `[s]`
 * Center Text: `[center]`
-* List e-mail: `[email=james@selfo.io][/email]` or [email]james@selfo.io[/email]`
+* List e-mail: `[email=james@selfo.io][/email]` or `[email]james@selfo.io[/email]`
 * Make URL: `[url=https://dudetechitout.com]My Blog[/url]`
 * Image: `[img]The image to show[/img]`
 * List: `[list=1][*]This will be numbered[/list]` and `[list]Will not be numbered[/list]`
