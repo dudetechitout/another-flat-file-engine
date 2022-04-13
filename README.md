@@ -42,7 +42,7 @@ BBcode is a special implementation of HTML. Basically instead of `<b>` it'll be 
 * List e-mail: `[email=james@selfo.io][/email]` or `[email]james@selfo.io[/email]`
 * Make URL: `[url=https://dudetechitout.com]My Blog[/url]`
 * Image: `[img]The image to show[/img]`
-* List: `[list=1][*]This will be numbered[/list]` and `[list]Will not be numbered[/list]`
+* List: `[list=1][*]This will be numbered[/list]` and `[list][*]Will not be numbered[/list]`
 * Video: `[youtube]https://www.youtube.com/watch?v=O91DT1pR1ew[/youtube]`
 
 ## Can I make a new page?
