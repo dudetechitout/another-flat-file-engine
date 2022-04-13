@@ -12,4 +12,4 @@ You edit the 'you' file to include the blog title (line 1), a quick summary of y
 
 ```Dude Tech it Out
 Hey, my name is James! This is just a simple place to jot down some thoughts n post some stuffs.
-/img/me.jpg```
+/img/me.jpg
